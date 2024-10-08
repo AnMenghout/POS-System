@@ -42,8 +42,8 @@ const data = ref([
         <a-flex align="center" justify="space-between">
             <a-typography-text class="font-medium text-xl">Bill name</a-typography-text>
             <a-flex align="center">
-                <a-typography-text class="font-medium text-base" style="color: #666666;">{{ record.date }}</a-typography-text>
-                <a-typography-text class="font-medium text-base" style="color: #666666;">{{record.time }}</a-typography-text>
+                <!-- <a-typography-text class="font-medium text-base" style="color: #666666;">{{ record.date }}</a-typography-text>
+                <a-typography-text class="font-medium text-base" style="color: #666666;">{{record.time }}</a-typography-text> -->
             </a-flex>
         </a-flex>
     </a-card>
