@@ -23,6 +23,8 @@ const data = ref([
     price: 22
   },
 
+
+
 ]);
 
 const subTotal = ref<number>(0);
@@ -59,7 +61,7 @@ const open2 = ref<boolean>(false);
 const loading = ref<boolean>(false);
 
 const showModal = () => {
-  open.value = true;
+  open1.value = true;
 };
 const showModal1 = () => {
   open1.value = true;
@@ -77,9 +79,9 @@ const handleOk = () => {
 </script>
 
 <template>
-  <a-row :gutter="[10, 10]" class="Order_Bill">
-    <a-col :span="24" class="h-full">
-      <a-card class="bill overflow-auto">
+  <a-row :gutter="[20, 20]">
+    <a-col :span="24">
+      <a-card class="h-f">
         <a-flex vertical gap="10">
           <a-flex align="center" justify="space-between">
             <a-typography-text class="font-medium text-xl" style="color: #5c576b;">Order Bill</a-typography-text>
@@ -103,8 +105,9 @@ const handleOk = () => {
             </a-modal>
           </a-flex>
         </a-flex>
-
-        <!-- Order items -->
+        <!-- <div class="empty-bill" style="text-align: center; padding: 50px 0; color: #ccc;">
+        Bill no item
+      </div> -->
         <div v-for="(record, index) in data" :key="index">
           <a-flex class="mt-5" align="center" justify="space-between">
             <a-flex vertical>
@@ -137,9 +140,7 @@ const handleOk = () => {
         </div>
       </a-card>
     </a-col>
-
-    <!-- Totals -->
-    <a-col :span="24" class="Total">
+    <a-col :span="24">
       <a-card>
         <a-flex vertical gap="5">
           <a-flex align="center" justify="space-between">
@@ -156,8 +157,6 @@ const handleOk = () => {
             <a-typography-text class="font-bold text-2xl" style="color: #5c576b;">${{ total }}</a-typography-text>
           </a-flex>
         </a-flex>
-
-        <!-- Buttons -->
         <a-flex gap="10" class="mt-4">
           <a-button class="w-full" size="large" style="background-color:#222222 ; color: white;">
             <a-flex gap="5" justify="center" align="center">
@@ -197,20 +196,20 @@ const handleOk = () => {
 </template>
 
 <style scoped>
-.Order_Bill {
-  position: relative;
-  height: 87vh;
-}
-
 .bill {
-  height: 63vh;
+  /* height: 63vh; */
   overflow-y: auto;
 }
-
+.h-f{
+  height: 100vh; 
+  max-height: 62vh;
+  overflow-y: auto;
+  border-radius: 10px;
+}
 .Total {
   position: absolute;
   bottom: 0;
-  margin-bottom: 10px;
-  width: 100%;
+  margin-bottom: 0px;
+  width: 98%;
 }
 </style>

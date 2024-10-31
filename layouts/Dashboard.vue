@@ -3,6 +3,7 @@ import { reactive, ref, watch, onMounted } from 'vue';
 import { Icon } from '@iconify/vue';
 import { useRoute } from 'vue-router';
 
+
 const route = useRoute();
 
 
@@ -45,7 +46,7 @@ onMounted(() => {
         state.selectedKeys = [''];
     }
 
-    
+
 });
 
 watch(
@@ -57,11 +58,22 @@ watch(
             setSelectedKeys(['']);
         }
 
-       
+
     }
 );
 
-
+const loading = ref<boolean>(false);
+const open2 = ref<boolean>(false);
+const showModal2 = () => {
+    open2.value = true;
+};
+const handleOk = () => {
+  loading.value = true;
+  setTimeout(() => {
+    loading.value = false;
+    open.value = false;
+  }, 2000);
+}
 </script>
 
 
@@ -69,9 +81,10 @@ watch(
 <template>
     <div class="dashboard">
         <a-layout>
-            <a-layout-sider theme="light" class="hide-on-sm" :width="85" :style="{
-                overflow: 'auto',
+            <a-layout-sider theme="light" class="hide-on-sm " :width="85" :style="{
+                // overflow: 'auto',
                 left: 0,
+                height: 'full',
                 top: 0,
                 bottom: 0,
                 border: 'none',
@@ -85,10 +98,10 @@ watch(
                     <a-menu v-model:selected-keys="state.selectedKeys" :open-keys="state.openKeys" mode="inline">
                         <a-menu-item-group>
                             <NuxtLink to="/home">
-                            <a-menu-item key="dashboard" class="p-0">
-                                <Icon icon="tabler:smart-home" width="30" height="30" />
-                            </a-menu-item>
-                        </NuxtLink>
+                                <a-menu-item key="dashboard" class="p-0">
+                                    <Icon icon="tabler:smart-home" width="30" height="30" />
+                                </a-menu-item>
+                            </NuxtLink>
                         </a-menu-item-group>
                         <a-menu-item-group>
                             <a-menu-item key="Shop_Owner">
@@ -96,11 +109,14 @@ watch(
                             </a-menu-item>
                         </a-menu-item-group>
                         <a-menu-item-group>
-                            <a-menu-item key="Delivery_Network">
+                            <a-menu-item key="Delivery_Network" @click="showModal2">
                                 <Icon icon="tabler:clipboard-list" width="30" height="30" />
                             </a-menu-item>
                         </a-menu-item-group>
                     </a-menu>
+                    <a-modal v-model:open="open2" @ok="handleOk" width="37%" centered :footer="null" class="pay">
+                        <HomePayLettlerBill />
+                    </a-modal>
                     <a-menu v-model:selected-keys="state.selectedKeys" mode="inline" class="menu-bottom">
                         <a-menu-item-group>
                             <a-menu-item key="Customer_Management">
@@ -160,23 +176,21 @@ watch(
     justify-content: space-between;
 }
 
-.hide-on-sm {
-    display: block;
-    height: 100vh;
-}
+
 
 .hide-on-md {
     display: block;
 }
 
-.sidebar-content {
-    position: relative;
-    height: 90vh;
-}
-
 .menu-bottom {
     position: absolute;
     bottom: 0;
+    margin-bottom: 20px;
 
+}
+
+.pay{
+    height: 500px;
+	overflow-y: auto;
 }
 </style>
