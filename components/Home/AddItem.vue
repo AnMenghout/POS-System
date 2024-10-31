@@ -24,7 +24,7 @@ const onFinishFailed = (errorInfo: any) => {
 </script>
 
 <template>
-    <a-flex justify="center" class="bg-sky-700 mt-5 rounded-md mb-5">
+ <a-flex justify="center" class="bg-sky-700 mt-5 rounded-md mb-5">
         <a-typography-text class="text-white py-3 font-medium text-lg">Add Item</a-typography-text>
     </a-flex>
     <a-form :model="formState" name="basic" autocomplete="off" layout="vertical"
@@ -42,7 +42,7 @@ const onFinishFailed = (errorInfo: any) => {
             :rules="[{ required: true, message: 'Please input your password!' }]">
             <a-input v-model:value="formState.Vat" size="large" placeholder="0.00" />
         </a-form-item> 
-    </a-form>
+    </a-form> 
 </template>
 
 <style scoped></style>
